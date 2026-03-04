@@ -1,1 +1,71 @@
-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My TCG Dealz | Under Construction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at center, #2c3e50 0%, #000000 100%);
+            color: white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            border: 2px solid #f1c40f;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.3);
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #f1c40f;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            color: #ecf0f1;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #f1c40f;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My TCG Dealz</h1>
+        <div class="loader"></div>
+        <p>Hier entstehen bald die heißesten Pokémon-Deals!</p>
+        <p>Von <strong>Fatale Flammen</strong> bis zu exklusiven <strong>Premium-Kollektionen</strong> – wir finden den besten Preis für dich.</p>
+        <div class="footer">
+            &copy; 2026 mytcgdealz.de | Schnapp sie dir alle (günstig)!
+        </div>
+    </div>
+</body>
+</html>
