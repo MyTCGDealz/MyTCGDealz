@@ -5,38 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Impressum - MyTCGDealz</title>
     <style>
-        :root { --primary-gold: #d4af37; --dark-bg: #1a1a1a; --text-light: #f5f5f5; }
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #1a1a1a;
+            --text-light: #f5f5f5;
+        }
         body {
-            margin: 0; padding: 10px; font-family: -apple-system, sans-serif;
-            background: #000; color: var(--text-light); line-height: 1.6;
-            overflow-x: hidden; hyphens: auto; word-wrap: break-word;
+            margin: 0;
+            padding: 10px;
+            font-family: -apple-system, sans-serif;
+            background: #000;
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            hyphens: auto;
+            word-wrap: break-word;
         }
         .container {
-            max-width: 800px; margin: 10px auto; background: var(--dark-bg);
-            padding: 20px; border-radius: 15px; border: 1px solid rgba(212, 175, 55, 0.3);
+            max-width: 800px;
+            margin: 10px auto;
+            background: var(--dark-bg);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
             box-sizing: border-box;
         }
-        h1, h2 { color: var(--primary-gold); text-transform: uppercase; word-break: break-word; }
-        h1 { border-bottom: 2px solid var(--primary-gold); padding-bottom: 10px; font-size: 1.5rem; }
-        .disclaimer {
-            background: rgba(212, 175, 55, 0.05); padding: 15px;
-            border-left: 4px solid var(--primary-gold); margin: 20px 0; font-size: 0.9rem;
+        h1, h2 { 
+            color: var(--primary-gold); 
+            text-transform: uppercase; 
+            word-break: break-word; 
         }
+        h1 { border-bottom: 2px solid var(--primary-gold); padding-bottom: 10px; font-size: 1.5rem; }
+        h2 { font-size: 1.1rem; margin-top: 25px; }
+        p { font-size: 0.95rem; margin: 10px 0; }
+        
+        .legal-box {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 15px;
+            border-left: 4px solid var(--primary-gold);
+            margin: 20px 0;
+            font-size: 0.9rem;
+        }
+        
         a { color: var(--primary-gold); text-decoration: none; font-weight: bold; }
-        .back-link { display: block; margin-top: 40px; text-align: center; padding: 10px; }
+        a:hover { text-decoration: underline; }
+        
+        .back-link { 
+            display: block; 
+            margin-top: 40px; 
+            text-align: center; 
+            padding: 15px;
+            border: 1px solid var(--primary-gold);
+            border-radius: 8px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Impressum</h1>
+        
         <h2>Angaben gemäß § 5 DDG</h2>
-        <p>[Vorname] [Nachname]<br>[Straße Hausnr.]<br>[PLZ] [Ort]</p>
+        <p>
+            [Vorname Nachname]<br>
+            [Straße Hausnummer]<br>
+            [PLZ Ort]
+        </p>
+        
         <h2>Kontakt</h2>
-        <p>E-Mail: [E-Mail-Adresse]</p>
-        <div class="disclaimer">
+        <p>E-Mail: [Deine E-Mail-Adresse]</p>
+
+        <h2>EU-Streitbeilegung</h2>
+        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: 
+           <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a>.<br>
+           Unsere E-Mail-Adresse findest du oben im Impressum.</p>
+
+        <h2>Verbraucher­streit­beilegung</h2>
+        <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+        <div class="legal-box">
             <strong>Markenrechtlicher Hinweis:</strong><br>
-            Die verwendeten Markennamen (z.B. Pokémon) dienen ausschließlich der Beschreibung der Produkte.
+            Die auf <strong>MyTCGDealz</strong> verwendeten Markennamen und Logos (z. B. Pokémon) sind Eigentum der jeweiligen Rechteinhaber. Sie dienen ausschließlich der Beschreibung der Produkte.
         </div>
+
         <a href="index.html" class="back-link">&larr; Zurück zu MyTCGDealz</a>
     </div>
 </body>
