@@ -3,69 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My TCG Dealz | Under Construction</title>
+    <title>MyTCGDealz | Sammeln & Investieren</title>
     <style>
+        :root {
+            --primary-gold: #d4af37; /* Passend zum Gold im Logo */
+            --accent-red: #a52a2a;   /* Passend zum Rot im Logo */
+            --dark-bg: #0f0f0f;
+            --text-light: #f5f5f5;
+        }
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: radial-gradient(circle at center, #2c3e50 0%, #000000 100%);
-            color: white;
-            height: 100vh;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+            color: var(--text-light);
+            min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-align: center;
         }
         .container {
-            padding: 20px;
-            border: 2px solid #f1c40f;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 0 20px rgba(241, 196, 15, 0.3);
-            max-width: 500px;
+            padding: 30px;
+            max-width: 700px;
+            margin: 20px;
+        }
+        .logo-container img {
+            max-width: 300px; /* Größe deines Kompass-Logos */
+            height: auto;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3));
         }
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #f1c40f;
+            font-size: 2.2rem;
+            margin: 10px 0;
+            color: var(--primary-gold);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
+        .subtitle {
+            font-size: 1.4rem;
+            color: var(--accent-red);
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+        .status-box {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--primary-gold);
+            padding: 20px;
+            border-radius: 5px;
+            backdrop-filter: blur(5px);
+        }
         p {
-            font-size: 1.2rem;
             line-height: 1.6;
-            color: #ecf0f1;
+            margin: 15px 0;
         }
         .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #f1c40f;
-            border-radius: 50%;
             width: 40px;
             height: 40px;
-            animation: spin 2s linear infinite;
+            border: 3px solid rgba(212, 175, 55, 0.1);
+            border-top: 3px solid var(--primary-gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
             margin: 20px auto;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            width: 100%;
         }
-        .footer {
-            margin-top: 20px;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
+        footer a { color: var(--primary-gold); text-decoration: none; margin: 0 10px; opacity: 0.8; }
+        footer a:hover { opacity: 1; text-decoration: underline; }
     </style>
 </head>
 <body>
+
     <div class="container">
-        <h1>My TCG Dealz</h1>
-        <div class="loader"></div>
-        <p>Hier entstehen bald die heißesten Pokémon-Deals!</p>
-        <p>Von <strong>Fatale Flammen</strong> bis zu exklusiven <strong>Premium-Kollektionen</strong> – wir finden den besten Preis für dich.</p>
-        <div class="footer">
-            &copy; 2026 mytcgdealz.de | Schnapp sie dir alle (günstig)!
+        <div class="logo-container">
+            <img src="logo.png" alt="My TCG Dealz Logo">
+        </div>
+
+        <div class="status-box">
+            <p>Hier entsteht dein Kompass für die besten <br><strong>Sammelkarten-Investments & Deals</strong>.</p>
+            <div class="loader"></div>
+            <p>Wir bereiten gerade die Analyse der heißesten Displays und Kollektionen für dich vor.</p>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2026 mytcgdealz.de</p>
+        <a href="impressum.html">Impressum</a> | 
+        <a href="datenschutz.html">Datenschutz</a>
+    </footer>
+
 </body>
 </html>
