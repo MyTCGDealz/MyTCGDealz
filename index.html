@@ -2,118 +2,243 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>MyTCGDealz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyTCGDealz - Premium Dashboard</title>
     <style>
         :root {
             --primary-gold: #d4af37;
-            --dark-bg: #0f0f0f;
-            --text-light: #f5f5f5;
+            --bg-dark: #121418;       /* TCGCheck-ähnlicher dunkler Grund */
+            --card-bg: #1c1f26;       /* Etwas hellere Karten */
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --header-gradient: linear-gradient(135deg, #121418 0%, #2d1b4e 100%);
         }
         
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
-            color: var(--text-light);
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex; justify-content: center;
+            padding: 20px 0;
         }
 
-        .viewport-wrapper {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
+        .page-wrapper {
+            width: 95%; max-width: 1100px;
+            background-color: #16191d;
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            position: relative;
         }
 
-        .content-area {
-            flex: 1;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .container {
-            width: 95%;
-            max-width: 600px;
+        /* --- HEADER (TCGCHECK STYLE) --- */
+        header {
+            background: var(--header-gradient);
+            padding: 50px 40px;
             text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
         }
 
         .logo-container img {
-            width: 100%;
-            max-width: 280px;
-            height: auto;
-            margin-bottom: 20px;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            
-            /* NEU: Weichzeichner-Effekt für die Kanten */
-            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
-            mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
+            width: 180px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
         }
 
-        .status-box {
-            background: rgba(255, 255, 255, 0.07);
-            border-left: 4px solid var(--primary-gold);
-            padding: 20px;
-            border-radius: 8px;
-            word-wrap: break-word;
-            hyphens: auto;
+        header h1 { margin: 15px 0 5px; font-size: 1.4rem; letter-spacing: 2px; color: var(--primary-gold); }
+
+        /* --- AKKORDEON (TOP DEALZ) --- */
+        .features-content {
+            background: rgba(0,0,0,0.3);
+            max-height: 400px;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            border-bottom: 1px solid #222;
+        }
+        .features-content.closed { max-height: 0; }
+
+        .features-content h2 {
+            text-align: center; color: var(--text-muted);
+            font-size: 0.8rem; text-transform: uppercase;
+            letter-spacing: 3px; margin-top: 25px;
         }
 
-        .loader {
-            width: 35px;
-            height: 35px;
-            border: 3px solid rgba(212, 175, 55, 0.1);
-            border-top: 3px solid var(--primary-gold);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 15px auto 0 auto;
+        /* --- ENDLOS-KARUSSELL --- */
+        .carousel-container { width: 100%; overflow: hidden; padding: 20px 0 40px; }
+        .carousel-track {
+            display: flex; width: max-content;
+            animation: infiniteScroll 18s linear infinite;
+        }
+        .carousel-track:hover { animation-play-state: paused; }
+        @keyframes infiniteScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.33%); }
         }
 
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .carousel-item { width: 260px; padding: 0 12px; }
+        .carousel-card {
+            background: var(--card-bg);
+            border: 1px solid #2d323a;
+            border-radius: 12px; height: 120px;
+            display: flex; align-items: center; padding: 0 15px;
+            transition: border-color 0.3s;
+        }
+        .carousel-card:hover { border-color: var(--primary-gold); }
+        
+        .card-img-small {
+            width: 70px; height: 70px; background-size: cover;
+            border-radius: 8px; margin-right: 15px; background-color: #000;
+        }
+        .card-info h4 { margin: 0; font-size: 0.85rem; color: #eee; }
+        .card-price { color: var(--primary-gold); font-weight: bold; font-size: 1rem; margin-top: 4px; }
 
-        footer {
-            padding: 20px 10px;
-            font-size: 0.8rem;
-            text-align: center;
-            background: rgba(0,0,0,0.5);
-            width: 100%;
+        /* --- TOGGLE BUTTON --- */
+        .toggle-container { position: relative; height: 0; z-index: 25; display: flex; justify-content: center; }
+        .central-toggle-btn {
+            position: absolute; top: -17px;
+            background: var(--card-bg); color: var(--primary-gold);
+            border: 2px solid #2d323a; width: 34px; height: 34px;
+            border-radius: 50%; cursor: pointer; display: flex;
+            justify-content: center; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
         }
 
-        footer a { color: var(--primary-gold); text-decoration: none; padding: 10px; display: inline-block; }
+        /* --- KATEGORIEN (REVOLUTIONIERT) --- */
+        .categories-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr);
+            gap: 15px; padding: 60px 30px 30px;
+        }
+        .cat-box {
+            background: var(--card-bg); padding: 20px 10px;
+            border-radius: 12px; border: 1px solid #2d323a;
+            text-align: center; transition: all 0.3s;
+        }
+        .cat-box:hover { border-color: var(--primary-gold); transform: translateY(-3px); }
+        .cat-img {
+            width: 60px; height: 60px; margin: 0 auto 12px;
+            background-size: contain; background-repeat: no-repeat; background-position: center;
+        }
+        .cat-box h3 { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; margin: 0; }
+
+        /* --- DEPOT CONTENT --- */
+        .content-section { padding: 20px 30px 50px; }
+        .tab-nav { display: flex; gap: 10px; margin-bottom: 20px; background: #0e1114; padding: 5px; border-radius: 10px; width: fit-content; }
+        .tab-nav button {
+            background: none; border: none; color: var(--text-muted);
+            padding: 8px 20px; cursor: pointer; border-radius: 8px; font-size: 0.85rem; font-weight: bold;
+        }
+        .tab-nav button.active { background: var(--card-bg); color: var(--primary-gold); box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+
+        .investment-grid { display: grid; gap: 10px; }
+        .clean-card {
+            background: var(--card-bg); padding: 18px 25px; border-radius: 12px;
+            display: flex; justify-content: space-between; align-items: center;
+            border: 1px solid #2d323a;
+        }
+        .clean-card h4 { margin: 0; font-size: 0.95rem; color: #fff; }
+        .clean-card p { margin: 4px 0 0; font-size: 0.75rem; color: var(--text-muted); }
+        .price-badge { color: var(--primary-gold); font-family: 'Courier New', monospace; font-weight: bold; font-size: 1.1rem; }
+
+        footer { text-align: center; padding: 30px; font-size: 0.7rem; color: #444; border-top: 1px solid #1c1f26; }
+
+        @media (max-width: 800px) {
+            .categories-grid { grid-template-columns: repeat(3, 1fr); }
+            .tab-nav { width: 100%; justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="viewport-wrapper">
-        <div class="content-area">
-            <div class="container">
-                <div class="logo-container">
-                    <img src="logo.png" alt="MyTCGDealz Logo">
-                </div>
-                
-                <div class="status-box">
-                    <p>Dein mobiler Kompass für die besten Karten-Deals entsteht gerade.</p>
-                    <div class="loader"></div>
+    <div class="page-wrapper">
+        <header>
+            <div class="logo-container">
+                <img src="Bilder/logo.png" alt="MyTCGDealz Logo">
+            </div>
+            <h1>MYTCGDEALZ</h1>
+        </header>
+
+        <div class="features-content" id="featuresContent">
+            <h2>Live Top Dealz</h2>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-img-small" style="background-image: url('Bilder/fatale_flammen.png');"></div>
+                            <div class="card-info"><h4>Fatale Flammen</h4><div class="card-price">176,00 €</div></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-img-small" style="background-image: url('Bilder/mega_glurak.png');"></div>
+                            <div class="card-info"><h4>Mega-Glurak X</h4><div class="card-price">169,99 €</div></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="carousel-card">
+                            <div class="card-img-small" style="background-image: url('Bilder/prismatische_e.png');"></div>
+                            <div class="card-info"><h4>Prismatische E.</h4><div class="card-price">155,00 €</div></div>
+                        </div>
+                    </div>
+                    <div class="carousel-item"><div class="carousel-card"><div class="card-img-small" style="background-image: url('Bilder/fatale_flammen.png');"></div><div class="card-info"><h4>Fatale Flammen</h4><div class="card-price">176,00 €</div></div></div></div>
+                    <div class="carousel-item"><div class="carousel-card"><div class="card-img-small" style="background-image: url('Bilder/mega_glurak.png');"></div><div class="card-info"><h4>Mega-Glurak X</h4><div class="card-price">169,99 €</div></div></div></div>
+                    <div class="carousel-item"><div class="carousel-card"><div class="card-img-small" style="background-image: url('Bilder/prismatische_e.png');"></div><div class="card-info"><h4>Prismatische E.</h4><div class="card-price">155,00 €</div></div></div></div>
                 </div>
             </div>
         </div>
 
-        <footer>
-            <p>&copy; 2026 mytcgdealz.de</p>
-            <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a>
-        </footer>
+        <div class="toggle-container">
+            <button class="central-toggle-btn" id="toggleBtn" onclick="toggleFeatures()">
+                <span id="toggleIcon">▲</span>
+            </button>
+        </div>
+
+        <div class="categories-grid">
+            <div class="cat-box"><div class="cat-img" style="background-image: url('Bilder/display.png');"></div><h3>Display</h3></div>
+            <div class="cat-box"><div class="cat-img" style="background-image: url('Bilder/ttb.png');"></div><h3>TTB</h3></div>
+            <div class="cat-box"><div class="cat-img" style="background-image: url('Bilder/kollektionen.png');"></div><h3>Kollektion</h3></div>
+            <div class="cat-box"><div class="cat-img" style="background-image: url('Bilder/tins.png');"></div><h3>Tins</h3></div>
+            <div class="cat-box"><div class="cat-img" style="background-image: url('Bilder/blister.png');"></div><h3>Blister</h3></div>
+        </div>
+
+        <div class="content-section">
+            <div class="tab-nav">
+                <button class="active" onclick="openTab(event, 'sealed')">Sealed Portfolio</button>
+                <button onclick="openTab(event, 'raw')">Raw Cards</button>
+            </div>
+            <div id="sealed" class="tab-content">
+                <div class="investment-grid">
+                    <div class="clean-card">
+                        <div><h4>Fatale Flammen Display</h4><p>Zustand: Riss in Folie</p></div>
+                        <div class="price-badge">176,00 €</div>
+                    </div>
+                    <div class="clean-card">
+                        <div><h4>Mega-Glurak X UPK</h4><p>Zustand: OVP</p></div>
+                        <div class="price-badge">169,99 €</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>&copy; 2026 MYTCGDEALZ.DE</footer>
     </div>
 
+    <script>
+        function toggleFeatures() {
+            const content = document.getElementById('featuresContent');
+            const btn = document.getElementById('toggleBtn');
+            const icon = document.getElementById('toggleIcon');
+            content.classList.toggle('closed');
+            icon.innerText = content.classList.contains('closed') ? '▼' : '▲';
+        }
+
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) tabcontent[i].style.display = "none";
+            tablinks = document.querySelectorAll(".tab-nav button");
+            for (i = 0; i < tablinks.length; i++) tablinks[i].classList.remove("active");
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.classList.add("active");
+        }
+    </script>
 </body>
 </html>
